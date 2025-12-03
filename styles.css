@@ -6,9 +6,23 @@
 }
 
 body {
-    background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+    background: linear-gradient(
+        120deg,
+        #ffffff 0%,
+        #d1d1d1 25%,
+        #dcdcdc 50%,
+        #e6e6e6 75%,
+        #ffffff 100%
+    );
+    background-size: 300% 300%;
+    animation: luzIluminando 10s ease-in-out infinite;
 }
 
+@keyframes luzIluminando {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -92,4 +106,17 @@ body {
 
 .card-fixed-height { min-height: 300px; }
 
+.botoes-card {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-carrinho {
+    width: 55px;        
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+}
 
