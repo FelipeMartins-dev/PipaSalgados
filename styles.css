@@ -49,15 +49,7 @@ body {
     color: #FFF;
 }
 
-.hero {
-    background: url(style/salgadoshero.png) center/cover no-repeat;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: rgb(255, 255, 255);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-}
+
 
 .btn-pedido {
     border-color: rgb(255, 0, 0);

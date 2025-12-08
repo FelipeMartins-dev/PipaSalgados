@@ -1,263 +1,160 @@
-<?php include 'includes/header.php'; ?>
+<?php
+include 'includes/header.php';
+require_once 'includes/db.php'; 
 
-<section class="hero" id="inicio">
-    <div class="container">
-        <h1 class="display-4 fw-bold">Sua festa merece mais sabor e qualidade</h1>
-        <p class="lead">Pães e salgados congelados e fritos com fabricação própria e entrega imediata</p>
-    </div>
-</section>
+$ids_destaque = [5, 12, 13];
+$ids_list = implode(',', $ids_destaque);
 
-<header id="sobre" class="py-5">
-    <div class="container">
 
-        <div class="row">
+$sql = "SELECT id, nome, descricao, preco, categoria, imagem, unidades 
+        FROM produtos
+        WHERE id IN ($ids_list)
+        ORDER BY FIELD(id, $ids_list)"; 
+        
+$result = $conn->query($sql);
+$produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+?>
 
-            <div class="col">
-                <h2>Bem-vindos à Pipa: Onde a Tradição Encontra o Sabor!</h2>
-                <p>
-                    Na Fábrica de Pães e Salgados Pipa, transformamos ingredientes simples
-                    em momentos deliciosos. Somos mais do que uma fábrica; somos a arte de fazer
-                    o pão e o salgado perfeitos, com a paixão e o cuidado que só uma empresa
-                    que valoriza a tradição e a qualidade pode oferecer.
-                </p>
+<section id="hero-carousel">
+    <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" style="max-height: 500px;">
+            
+            <div class="carousel-item active">
+                <img src="style/salgados.png" class="d-block w-100" alt="Salgados Deliciosos" style="object-fit: cover; height: 500px;">
+                <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
+                    <h1 class="display-4 fw-bold">Nossos Salgados</h1>
+                    <p class="lead">Opções congeladas e prontas para fritar. Perfeitas para sua festa!</p>
+                    <a href="salgados.php" class="btn btn-warning btn-lg mt-3">Ver Salgados</a>
+                </div>
             </div>
 
-            <div class="col-lg-5">
-                <img src="style/padaria.png" class="img-fluid rounded-5 shadow">
+            <div class="carousel-item">
+                <img src="style/paes.jpg" class="d-block w-100" alt="Pães Frescos" style="object-fit: contain; height: 500px;">
+                <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
+                    <h1 class="display-4 fw-bold">Pães </h1>
+                    <p class="lead">Pães congelados, do nosso forno para o seu.</p>
+                    <a href="paes.php" class="btn btn-warning btn-lg mt-3">Ver Pães</a>
+                </div>
             </div>
 
-            <div class="col">
-                <h2>O que você procura hoje?</h2>
-                <p><strong>Pães Congelados</strong> – Do Nosso Forno para o Seu...</p>
-                <p><strong>Salgados Congelados</strong> – A Solução Perfeita...</p>
+            <div class="carousel-item">
+                <img src="style/bg-premium.jpg" class="d-block w-100" alt="Produtos Premium" style="object-fit: cover; height: 500px;">
+                <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
+                    <h1 class="display-4 fw-bold">Linha Premium</h1>
+                    <p class="lead">Sabores exclusivos e ingredientes selecionados.</p>
+                    <a href="salgados.php#linha-premium" class="btn btn-warning btn-lg mt-3">Conheça o Premium</a>
+                </div>
             </div>
 
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-</header>
+</section>
+
+<section id="sobre" class="py-5">
+    <div class="container">
+        <div class="row align-items-center gy-4">
+            
+            <div class="col-md-4">
+                <h2>Nossa Missão: Sabor Sem Limites!</h2>
+                <p>Na Pipa Salgados, transformamos a tradição familiar em delícias práticas para o seu dia a dia e seus eventos. Somos a fábrica que entende de festa: da bolinha de queijo crocante ao pão fresquinho, garantimos qualidade e paixão em cada mordida. </p>
+                <p class="fw-bold">Nosso foco é dar mais sabor ao seu tempo, com a qualidade que só a fabricação própria oferece!</p>
+            </div>
+            
+            <div class="col-md-4 text-center">
+                <img src="style/padaria.png" class="img-fluid rounded-5 shadow" alt="Padaria">
+            </div>
+            
+            <div class="col-md-4">
+                <h2> O que você procura hoje?</h2>
+                <p><strong>Salgados Congelados & Fritos:</strong></p>
+                <p class="small text-muted">A solução perfeita! Escolha entre nossa linha de salgados fritos na hora ou as opções congeladas, prontas para ir direto para sua fritadeira ou forno.</p>
+                
+                <p class="mt-4"><strong>Pães Congelados:</strong></p>
+                <p class="small text-muted">Aquele cheirinho de pão que acabou de sair do forno, sem complicação. Nossos pães são pré-prontos e garantem a mesa mais fresca e saborosa.</p>
+            </div>
+            
+        </div>
+    </div>
+</section>
 
 <main class="py-5">
-
     <div class="container">
-        <div class="row" id="produtos">
-                    <h1 style="text-align: center;" class="my-4">Nossos Produtos Destaques</h1>
-                </div>
-                <div class="row justify-content-center position-relative">
-                    <div class="row">
-                        <div id="carouselExampleFade" class="carousel slide carousel-dark" data-bs-ride="carousel">
-                            <div class="carousel-inner">
 
-                                <div class="carousel-item active">
-                                    <div class="row d-flex justify-content-center">
-                                        <!--Primeiro grupo de cards-->
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="card card-fixed-height">
-                                                <img src="style/salgados.png" class="card-img-top" alt="..."
-                                                    style="height: 14rem; object-fit: cover;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Aqui estão nossos salgados!</h5>
-                                                    <p class="card-text">Para fazer seu pedido basta apertar o botão a
-                                                        baixo.</p>
-                                                    <div class="botoes-card">
-                                                        <a href="" class="btn btn-pedido flex-grow-1">
-                                                            Fazer pedido pelo whatsapp
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
-                                                                <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+        <h2 class="text-center my-4">Destaques da Casa</h2>
 
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="card card-fixed-height h-100">
-                                                <img src="style/paes.jpg" class="card-img-top" alt="..."
-                                                    style="height: 14rem; object-fit: cover;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Aqui estão nossos pães!</h5>
-                                                    <p class="card-text">Para fazer seu pedido basta apertar o botão a
-                                                        baixo.</p>
-                                                    <div class="botoes-card">
-                                                        <a href="" class="btn btn-pedido flex-grow-1">
-                                                            Fazer pedido pelo whatsapp
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
-                                                                <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+        <?php if (count($produtos_destaque) > 0): ?>
+            <div class="row g-4 justify-content-center">
 
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="card card-fixed-height">
-                                                <img src="style/outro-produto.jpg" class="card-img-top" alt="..."
-                                                    style="height: 14rem; object-fit: cover;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Aqui estão nossas sobremesas!</h5>
-                                                    <p class="card-text">Para fazer seu pedido basta apertar o botão a
-                                                        baixo.</p>
-                                                    <div class="botoes-card">
-                                                        <a href="" class="btn btn-pedido flex-grow-1">
-                                                            Fazer pedido pelo whatsapp
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
-                                                                <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                <?php foreach ($produtos_destaque as $p): 
+                    $preco_br = number_format($p['preco'], 2, ',', '.'); 
+                    $preco_js = number_format($p['preco'], 2, '.', ''); 
+                ?>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <?php
+                                $img = !empty($p['imagem']) ? $p['imagem'] : 'style/placeholder.png';
+                            ?>
+                            <img src="<?= $img ?>" class="card-img-top" alt="<?= htmlspecialchars($p['nome']) ?>"
+                                style="height: 200px; object-fit: cover;">
 
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title"><?= htmlspecialchars($p['nome']) ?></h5>
+                                
+                                <p class="card-text mb-3 flex-grow-1"><?= htmlspecialchars($p['descricao']) ?></p>
+                                
+                                <p class="card-text fw-bold mb-3">R$ <span id="preco-<?= $p['id'] ?>"><?= $preco_br ?></span></p>
+
+                                <div class="mt-auto">
+                                    <div class="input-group mb-2">
+    
+                                        <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                onclick="alterarQtdProduto(<?= $p['id'] ?>, -1)">
+                                            −
+                                        </button>
+                                        
+                                        <input type="number" class="form-control form-control-sm text-center"
+                                            value="1" min="1" id="qtd-<?= $p['id'] ?>"
+                                            readonly 
+                                            style="max-width: 60px;">
+                                            
+                                        <button class="btn btn-outline-secondary btn-sm" type="button"
+                                                onclick="alterarQtdProduto(<?= $p['id'] ?>, 1)">
+                                            +
+                                        </button>
                                     </div>
-                                </div>
-                                <!--Segundo grupo de cards-->
-                                <div class="carousel-item">
-                                    <div class="row d-flex justify-content-center">
-
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="card card-fixed-height">
-                                                <img src="style/" class="card-img-top" alt="..."
-                                                    style="height: 14rem; object-fit: cover;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Aqui estão nossos salgados!</h5>
-                                                    <p class="card-text">Para fazer seu pedido basta apertar o botão a
-                                                        baixo.</p>
-                                                    <div class="botoes-card">
-                                                        <a href="" class="btn btn-pedido flex-grow-1">
-                                                            Fazer pedido pelo whatsapp
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
-                                                                <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="card card-fixed-height h-100">
-                                                <img src="style/" class="card-img-top" alt="..."
-                                                    style="height: 14rem; object-fit: cover;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Aqui estão nossos pães!</h5>
-                                                    <p class="card-text">Para fazer seu pedido basta apertar o botão a
-                                                        baixo.</p>
-                                                    <div class="botoes-card">
-                                                        <a href="" class="btn btn-pedido flex-grow-1">
-                                                            Fazer pedido pelo whatsapp
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
-                                                                <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 col-md-4 mb-3">
-                                            <div class="card card-fixed-height">
-                                                <img src="style/outro-produto.jpg" class="card-img-top" alt="..."
-                                                    style="height: 14rem; object-fit: cover;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Aqui estão nossas sobremesas!</h5>
-                                                    <p class="card-text">Para fazer seu pedido basta apertar o botão a
-                                                        baixo.</p>
-                                                    <div class="botoes-card">
-                                                        <a href="" class="btn btn-pedido flex-grow-1">
-                                                            Fazer pedido pelo whatsapp
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-dash" viewBox="0 0 16 16">
-                                                                <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="" class="btn btn-pedido btn-carrinho">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-                                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                    <button class="btn btn-pedido btn-sm w-100" 
+                                            data-produto-id="<?= $p['id'] ?>" 
+                                            data-nome="<?= htmlspecialchars($p['nome']) ?>"
+                                            data-preco="<?= $preco_js ?>"
+                                            onclick="adicionarEIrParaCarrinho(<?= $p['id'] ?>)">
+                                        Adicionar ao carrinho
+                                    </button>
                                 </div>
                             </div>
-
-                            <button
-                                class="carousel-control-prev position-absolute top-50 start-0 translate-middle-y custom-arrow"
-                                type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-
-                            <button
-                                class="carousel-control-next position-absolute top-50 end-0 translate-middle-y custom-arrow"
-                                type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
 
-                <div class="row">
-                    <a href="produtos.php" class="btn btn-pedido">Mais produtos...</a>   
-                </div>
-</main>
+            </div>
+        <?php else: ?>
+            <p class="text-center">Nenhum destaque encontrado. Verifique os IDs configurados.</p>
+        <?php endif; ?>
 
-<section id="cardapio" class="py-5 bg-pattern">
-     <div class="container py-lg-5">
+        <section id="cardapio" class="py-5 bg-pattern">
+        <div class="container py-lg-5">
             <div class="text-center mb-5">
                 <h5 class="text-danger fw-bold text-uppercase">Nosso Cardápio</h5>
                 <h2 class="fw-bold">Escolha seus Favoritos</h2>
@@ -269,12 +166,7 @@
                         class="text-danger">R$ 85,00</span> o cento</h4>
                 <small class="text-muted">(Exceto bolinho de bacalhau)</small>
             </div>
-            <div class="alert alert-warning text-center shadow-sm border-warning mb-5 rounded-4 mx-auto"
-                style="max-width: 700px;">
-                <h4 class="mb-0 fw-bold text-dark"><i class="bi bi-megaphone-fill"></i> Salgados congelado: <span
-                        class="text-danger">R$ 65,00</span> o cento</h4>
-                <small class="text-muted">(Exceto bolinho de bacalhau)</small>
-            </div>
+            
 
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -366,12 +258,12 @@
                                             <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <div><strong>Calabresa com Cheddar</strong> <small
+                                            <div><strong>Trouxinha de Calabresa com Cheddar</strong> <small
                                                     class="text-muted d-block">25 unidades</small></div>
                                             <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <div><strong>Presunto e Mussarela</strong> <small
+                                            <div><strong>Trouxinha de Presunto e Mussarela</strong> <small
                                                     class="text-muted d-block">25 unidades</small></div>
                                             <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
                                         </li>
@@ -405,6 +297,15 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    </div>
+</main>
+
+<section id="cardapio" class="py-5 bg-pattern">
+    <div class="container py-lg-5">
+        </div>
 </section>
 
 <?php include 'includes/footer.php'; ?>
+<script src="js/carrinho.js"></script>

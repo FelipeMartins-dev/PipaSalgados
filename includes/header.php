@@ -35,7 +35,7 @@ if (!isset($_SESSION)) {
             <ul class="navbar-nav w-100 nav-fill nav-underline">
 
                 <li class="nav-item me-3">
-                    <a class="nav-link" href="/PipaSalgados/index.php#inicio">Início</a>
+                    <a class="nav-link" href="/PipaSalgados/index.php#hero-carousel">Início</a>
                 </li>
 
                 <li class="nav-item me-3">
@@ -45,10 +45,10 @@ if (!isset($_SESSION)) {
                 <li class="nav-item dropdown me-3">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Produtos</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/PipaSalgados/produtos.php?categoria=Salgados">Salgados</a></li>
-                        <li><a class="dropdown-item" href="/PipaSalgados/produtos.php?categoria=Pães">Pães</a></li>
+                        <li><a class="dropdown-item" href="/PipaSalgados/salgados.php">Salgados</a></li>
+                        <li><a class="dropdown-item" href="/PipaSalgados/paes.php">Pães</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/PipaSalgados/produtos.php">Todos os Produtos</a></li>
+                        <li><a class="dropdown-item" href="/PipaSalgados/index.php#cardapio">Cardápio</a></li>
                     </ul>
                 </li>
 
@@ -105,3 +105,4 @@ if (!isset($_SESSION)) {
         </div>
     </div>
 </nav>
+<script src="/PipaSalgados/js/carrinho.js"></script>

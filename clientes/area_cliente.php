@@ -42,7 +42,7 @@ $nomeCliente = $_SESSION["cliente_nome"];
                 <div class="card-body text-center p-4">
                     <h5 class="card-title mb-3">Ver Produtos</h5>
                     <p class="card-text text-muted">Veja todos os salgados e pães disponíveis.</p>
-                    <a href="../produtos.php" class="btn btn-primary rounded-pill px-4">Acessar</a>
+                    <a href="../index.php" class="btn btn-primary rounded-pill px-4">Acessar</a>
                 </div>
             </div>
         </div>
