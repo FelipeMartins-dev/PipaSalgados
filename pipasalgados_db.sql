@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/12/2025 às 14:52
+-- Tempo de geração: 08/12/2025 às 22:15
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -61,19 +61,19 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id`, `nome`, `descricao`, `unidades`, `preco`, `imagem`, `estoque`, `categoria`) VALUES
-(1, 'Bolinha de Queijo', '25 unidades', 25, 14.00, NULL, 1000, 'Congelados'),
-(2, 'Bolinho de Milho', '25 unidades', 25, 14.00, NULL, 1000, 'Congelados'),
-(3, 'Bolinho de Palmito', '25 unidades', 25, 14.00, NULL, 1000, 'Congelados'),
-(4, 'Coxinha de Carne', '25 unidades', 25, 14.00, NULL, 1000, 'Congelados'),
+(1, 'Bolinha de Queijo', '25 unidades', 25, 14.00, 'style/bolinhaq.jpeg', 1000, 'Congelados'),
+(2, 'Bolinho de Milho', '25 unidades', 25, 14.00, 'style/bolinhadeM.jpg', 1000, 'Congelados'),
+(3, 'Bolinho de Palmito', '25 unidades', 25, 14.00, 'style/bolinhadeP.jpg', 1000, 'Congelados'),
+(4, 'Coxinha de Carne', '25 unidades', 25, 14.00, 'style/coxinhadeCarne.webp', 1000, 'Congelados'),
 (5, 'Coxinha de Frango', '25 unidades', 25, 14.00, 'style/salgados.png', 1000, 'Congelados'),
-(6, 'Croquete', '25 unidades', 25, 15.00, NULL, 1000, 'Congelados'),
-(7, 'Kibe Tradicional', '25 unidades', 25, 15.00, NULL, 1000, 'Congelados'),
-(8, 'Kibe com Coalhada', '25 unidades', 25, 16.00, NULL, 1000, 'Congelados'),
-(9, 'Trouxinha de Carne', '25 unidades', 25, 14.00, NULL, 1000, 'Congelados'),
-(10, 'Trouxinha de Calabresa com Cheddar', '25 unidades', 25, 14.00, NULL, 1000, 'Congelados'),
-(11, 'Trouxinha de Presunto e Mussarela', '25 unidades', 25, 14.00, NULL, 1000, 'Congelados'),
-(12, 'Salgados Fritos Tradicionais', '100 unidades (cento)', 100, 85.00, NULL, 1000, 'Fritos'),
-(13, 'Bolinho de Bacalhau', '25 unidades', 25, 30.00, NULL, 1000, 'Premium');
+(6, 'Croquete', '25 unidades', 25, 15.00, 'style/croquete.jpg', 1000, 'Congelados'),
+(7, 'Kibe Tradicional', '25 unidades', 25, 15.00, 'style/kibe.jpg', 1000, 'Congelados'),
+(8, 'Kibe com Coalhada', '25 unidades', 25, 16.00, 'style/kibeC.webp', 1000, 'Congelados'),
+(9, 'Trouxinha de Carne', '25 unidades', 25, 14.00, 'style/trouxinhaC.webp', 1000, 'Congelados'),
+(10, 'Trouxinha de Calabresa com Cheddar', '25 unidades', 25, 14.00, 'style/trouxinhaCC.jfif', 1000, 'Congelados'),
+(11, 'Trouxinha de Presunto e Mussarela', '25 unidades', 25, 14.00, 'style/trouxinhaPQ.jpg', 1000, 'Congelados'),
+(12, 'Salgados Fritos Tradicionais', '100 unidades (cento)', 100, 85.00, 'style/salgadofrito.jpg', 1000, 'Fritos'),
+(13, 'Bolinho de Bacalhau', '25 unidades', 25, 30.00, 'style/bolinhoB.jfif', 1000, 'Premium');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `cpf`, `telefone`, `senha`, `tipo`, `criado_em`) VALUES
-(1, 'FELIPE DE OLIVEIRA MARTINS', 'felps450@gmail.com', '45264476845', '18997286000', '$2y$10$VLKVVCk3eb.UHkOGYol8sOhLsKX4N60NbuqhBLzRhi7uIgya6xKbG', 'cliente', '2025-12-04 12:32:10');
+(1, 'FELIPE DE OLIVEIRA MARTINS', 'felps450@gmail.com', '45264476845', '18997286000', '$2y$10$VLKVVCk3eb.UHkOGYol8sOhLsKX4N60NbuqhBLzRhi7uIgya6xKbG', 'cliente', '2025-12-04 12:32:10'),
+(2, 'Antônio Eduardo Salvador Ancheta Borges', 'tzx0700@gmail.com', '526.509.008-81', '17991154913', '$2y$10$yNf8rLIdMAoeTM0fPncx0ugE4aKchR6he8izujnU2ISw.iYQPz6ny', 'cliente', '2025-12-08 17:33:22');
 
 --
 -- Índices para tabelas despejadas
@@ -144,7 +145,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restrições para tabelas despejadas

@@ -25,7 +25,7 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
         <div class="carousel-inner" style="max-height: 500px;">
             
             <div class="carousel-item active">
-                <img src="style/salgados.png" class="d-block w-100" alt="Salgados Deliciosos" style="object-fit: cover; height: 500px;">
+                <img src="style/coxinhac.png" class="d-block w-100" alt="Salgados Deliciosos" style="object-fit: cover; height: 500px;">
                 <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
                     <h1 class="display-4 fw-bold">Nossos Salgados</h1>
                     <p class="lead">Opções congeladas e prontas para fritar. Perfeitas para sua festa!</p>
@@ -34,7 +34,7 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
             </div>
 
             <div class="carousel-item">
-                <img src="style/paes.jpg" class="d-block w-100" alt="Pães Frescos" style="object-fit: contain; height: 500px;">
+                <img src="style/paoc.png" class="d-block w-100" alt="Pães Frescos" style="object-fit: cover; height: 500px;">
                 <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
                     <h1 class="display-4 fw-bold">Pães </h1>
                     <p class="lead">Pães congelados, do nosso forno para o seu.</p>
@@ -43,7 +43,7 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
             </div>
 
             <div class="carousel-item">
-                <img src="style/bg-premium.jpg" class="d-block w-100" alt="Produtos Premium" style="object-fit: cover; height: 500px;">
+                <img src="style/croquetec.png" class="d-block w-100" alt="Produtos Premium" style="object-fit: cover; height: 500px;">
                 <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
                     <h1 class="display-4 fw-bold">Linha Premium</h1>
                     <p class="lead">Sabores exclusivos e ingredientes selecionados.</p>
