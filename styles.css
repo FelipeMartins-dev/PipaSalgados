@@ -112,3 +112,71 @@ body {
     padding: 8px;
 }
 
+/* Imagem com efeito clean */
+.hero-img {
+    height: 550px;
+    object-fit: cover;
+    filter: brightness(0.75) saturate(1.1);
+    transition: transform 1.5s ease;
+}
+
+.carousel-item:hover .hero-img {
+    transform: scale(1.05);
+}
+
+/* Legendinhas Premium */
+.custom-caption {
+    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.25);
+    padding: 25px 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Botão Clean */
+.hero-btn {
+    background: #ffc107;
+    color: #000;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 50px;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.hero-btn:hover {
+    background: #ffb300;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* Indicadores */
+.carousel-indicators [data-bs-target] {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #ffffff80;
+    transition: 0.3s ease;
+}
+
+.carousel-indicators .active {
+    background-color: #ffc107;
+    width: 28px;
+    border-radius: 20px;
+}
+
+/* Setas */
+.hero-arrow {
+    filter: invert(100%);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0.7;
+    transition: 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}

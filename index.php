@@ -15,66 +15,66 @@ $result = $conn->query($sql);
 $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 ?>
 
-<section id="hero-carousel">
-    <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel">
+<section id="hero-carousel" class="position-relative">
+    <div id="categoryCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <!-- Indicadores customizados -->
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="2"></button>
         </div>
-        <div class="carousel-inner" style="max-height: 500px;">
-            
+
+        <div class="carousel-inner" style="max-height: 550px; border-radius: 15px; overflow: hidden;">
+
+            <!-- Slide 1 -->
             <div class="carousel-item active">
-                <img src="style/coxinhac.png" class="d-block w-100" alt="Salgados Deliciosos" style="object-fit: cover; height: 500px;">
-                <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
-                    <h1 class="display-4 fw-bold">Nossos Salgados</h1>
+                <img src="style/coxinhac.png" class="d-block w-100 hero-img" alt="Salgados Deliciosos">
+
+                <div class="carousel-caption custom-caption">
+                    <h1 class="fw-bold display-4">Nossos Salgados</h1>
                     <p class="lead">Opções congeladas e prontas para fritar. Perfeitas para sua festa!</p>
-                    <a href="salgados.php" class="btn btn-warning btn-lg mt-3">Ver Salgados</a>
+                    <a href="salgados.php" class="btn hero-btn">Ver Salgados</a>
                 </div>
             </div>
 
+            <!-- Slide 2 -->
             <div class="carousel-item">
-                <img src="style/paoc.png" class="d-block w-100" alt="Pães Frescos" style="object-fit: cover; height: 500px;">
-                <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
-                    <h1 class="display-4 fw-bold">Pães </h1>
+                <img src="style/paoc.png" class="d-block w-100 hero-img" alt="Pães Frescos">
+
+                <div class="carousel-caption custom-caption">
+                    <h1 class="fw-bold display-4">Pães</h1>
                     <p class="lead">Pães congelados, do nosso forno para o seu.</p>
-                    <a href="paes.php" class="btn btn-warning btn-lg mt-3">Ver Pães</a>
+                    <a href="paes.php" class="btn hero-btn">Ver Pães</a>
                 </div>
             </div>
 
+            <!-- Slide 3 -->
             <div class="carousel-item">
-                <img src="style/croquetec.png" class="d-block w-100" alt="Produtos Premium" style="object-fit: cover; height: 500px;">
-                <div class="carousel-caption d-block text-white" style="background-color: rgba(0, 0, 0, 0.4); border-radius: 5px;">
-                    <h1 class="display-4 fw-bold">Linha Premium</h1>
+                <img src="style/croquetec.png" class="d-block w-100 hero-img" alt="Produtos Premium">
+
+                <div class="carousel-caption custom-caption">
+                    <h1 class="fw-bold display-4">Linha Premium</h1>
                     <p class="lead">Sabores exclusivos e ingredientes selecionados.</p>
-                    <a href="salgados.php#linha-premium" class="btn btn-warning btn-lg mt-3">Conheça o Premium</a>
+                    <a href="salgados.php#linha-premium" class="btn hero-btn">Conheça o Premium</a>
                 </div>
             </div>
-
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
 </section>
 
 <section id="sobre" class="py-5">
     <div class="container">
+        
         <div class="row align-items-center gy-4">
-            
+            <div class="col-md-4 text-center">
+                <img src="style/padaria.png" class="img-fluid rounded-5 shadow" alt="Padaria">
+            </div>
+
             <div class="col-md-4">
                 <h2>Nossa Missão: Sabor Sem Limites!</h2>
                 <p>Na Pipa Salgados, transformamos a tradição familiar em delícias práticas para o seu dia a dia e seus eventos. Somos a fábrica que entende de festa: da bolinha de queijo crocante ao pão fresquinho, garantimos qualidade e paixão em cada mordida. </p>
                 <p class="fw-bold">Nosso foco é dar mais sabor ao seu tempo, com a qualidade que só a fabricação própria oferece!</p>
-            </div>
-            
-            <div class="col-md-4 text-center">
-                <img src="style/padaria.png" class="img-fluid rounded-5 shadow" alt="Padaria">
             </div>
             
             <div class="col-md-4">
