@@ -89,4 +89,4 @@ $nomeCliente = $_SESSION["usuario_nome"];
     </div>
 </div>
 <?php include '../includes/footer.php'; ?>
-
+<script src="js/carrinho.js?v=<?php echo time(); ?>"></script>

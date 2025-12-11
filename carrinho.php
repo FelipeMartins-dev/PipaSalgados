@@ -131,3 +131,4 @@ include 'includes/header.php';
     document.addEventListener('DOMContentLoaded', carregarTabelaCarrinho);
 </script>
 <?php include 'includes/footer.php'; ?>
+<script src="js/carrinho.js?v=<?php echo time(); ?>"></script>

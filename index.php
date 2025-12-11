@@ -70,7 +70,8 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
         </div>
         <br><br>
         
-        <div class="row align-items-center gy-4">
+        <div class="row align-items-start gy-4 justify-content-center">
+
 
         
         <div class="col-md-3 text-center">

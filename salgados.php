@@ -96,3 +96,4 @@ $produtos_salgados = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 </main>
 
 <?php include 'includes/footer.php'; ?>
+<script src="js/carrinho.js?v=<?php echo time(); ?>"></script>
