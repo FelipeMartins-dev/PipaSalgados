@@ -207,7 +207,7 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Bolinha de Queijo</strong> <small class="text-muted d-block">25
                                                     unidades</small></div>
-                                            <span class="badge bg rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Bolinho de Milho</strong> <small class="text-muted d-block">25

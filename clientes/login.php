@@ -41,12 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // Redirecionamento por tipo
             if ($tipo_banco === "cliente") {
-                header("Location: clientes/area_cliente.php");
+                header("Location: area_cliente.php");
                 exit;
             }
 
             if ($tipo_banco === "admin") {
-                header("Location: area_admin.php");
+                header("Location: ../admin/area_admin.php");
                 exit;
             }
         }

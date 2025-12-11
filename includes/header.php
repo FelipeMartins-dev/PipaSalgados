@@ -101,20 +101,20 @@ if (!isset($_SESSION)) {
 
             <ul class="dropdown-menu dropdown-menu-end">
 
-                <?php if (isset($_SESSION["cliente_id"])): ?>
+                        <?php if (isset($_SESSION["usuario_id"]) && $_SESSION["usuario_tipo"] === "cliente"): ?>
 
-                    <li><a class="dropdown-item" href="/PipaSalgados/clientes/area_cliente.php">Área do Cliente</a></li>
-                    <li><a class="dropdown-item" href="/PipaSalgados/carrinho.php">Carrinho</a></li>
-                    <li><a class="dropdown-item" href="/PipaSalgados/clientes/meus_pedidos.php">Meus Pedidos</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="/PipaSalgados/clientes/logout.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="/PipaSalgados/clientes/area_cliente.php">Área do Cliente</a></li>
+                            <li><a class="dropdown-item" href="/PipaSalgados/carrinho.php">Carrinho</a></li>
+                            <li><a class="dropdown-item" href="/PipaSalgados/clientes/meus_pedidos.php">Meus Pedidos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="/PipaSalgados/clientes/logout.php">Sair</a></li>
 
-                <?php else: ?>
+                        <?php else: ?>
 
-                    <li><a class="dropdown-item" href="/PipaSalgados/clientes/login.php">Entrar</a></li>
-                    <li><a class="dropdown-item" href="/PipaSalgados/clientes/cadastro.php">Criar Conta</a></li>
+                            <li><a class="dropdown-item" href="/PipaSalgados/clientes/login.php">Entrar</a></li>
+                            <li><a class="dropdown-item" href="/PipaSalgados/clientes/cadastro.php">Criar Conta</a></li>
 
-                <?php endif; ?>
+                        <?php endif; ?>
 
             </ul>
         </li>
