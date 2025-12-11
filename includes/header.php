@@ -74,8 +74,7 @@ if (!isset($_SESSION)) {
         <span id="cart-count"
       class="badge bg-danger position-absolute"
       style="
-        top: -4px;
-        right: -1px;
+        top: -1px;
         border-radius: 50%;
         padding: 4px 7px;
       ">

@@ -32,19 +32,7 @@ include 'includes/header.php';
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Resumo do Pedido</h5>
-                            <h6>Método de Recebimento: </h6>
-
-                            <div class="recebimento-opcoes">
-                                <label>
-                                    <input type="radio" name="metodo_recebimento" value="retirada" required>
-                                    Retirada no local
-                                </label>
-
-                                <label style="margin-left: 15px;">
-                                    <input type="radio" name="metodo_recebimento" value="entrega" required>
-                                    Entrega no endereço
-                                </label>
-                            </div>
+                            
 
                             <ul class="list-group list-group-flush mb-3">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
