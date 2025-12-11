@@ -53,7 +53,9 @@ $produtos_salgados = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><?= htmlspecialchars($p['nome']) ?></h5>
                                 
-                                <p class="card-text mb-3 flex-grow-1"><?= htmlspecialchars($p['descricao']) ?></p>
+                                <p class="card-text mb-3 flex-grow-1"><?= htmlspecialchars($p['descricao']) ?>
+                                    <strong>(20g)</strong>
+                                </p>
                                 
                                 <p class="card-text fw-bold mb-3">R$ <span><?= $preco_br ?></span></p>
 
@@ -77,8 +79,8 @@ $produtos_salgados = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
                                             data-produto-id="<?= $p['id'] ?>" 
                                             data-nome="<?= htmlspecialchars($p['nome']) ?>"
                                             data-preco="<?= $preco_js ?>"
-                                            onclick="adicionarEIrParaCarrinho(<?= $p['id'] ?>)">
-                                        Adicionar e Finalizar
+                                            onclick="adicionarAoCarrinho(<?= $p['id'] ?>)">
+                                        Adicionar ao Carrinho
                                     </button>
                                 </div>
                             </div>

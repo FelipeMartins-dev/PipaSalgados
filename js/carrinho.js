@@ -1,83 +1,124 @@
-// ====================================================================
-// FUNÇÕES DE MANIPULAÇÃO DO CARRINHO (LOCAL STORAGE)
-// ====================================================================
+// carrinho.js - versão estável e instrumentada
+console.log("carrinho.js carregado - versão estável");
 
-// Carrega o carrinho do Local Storage
+// ====================================================================
+// UTILITÁRIOS
+// ====================================================================
 function carregarCarrinho() {
-    let carrinho = localStorage.getItem("carrinho");
-    return carrinho ? JSON.parse(carrinho) : [];
+    try {
+        let raw = localStorage.getItem("carrinho");
+        if (!raw) return [];
+        let parsed = JSON.parse(raw);
+        // Garantia: deve ser array
+        if (!Array.isArray(parsed)) {
+            console.warn("carrinho localStorage não era array — convertendo para array vazio");
+            return [];
+        }
+        // Filtra itens inválidos
+        return parsed.filter(item => item && typeof item === "object" && !isNaN(parseInt(item.id)) && !isNaN(parseInt(item.quantidade)));
+    } catch (e) {
+        console.error("Erro ao carregar carrinho:", e);
+        return [];
+    }
 }
 
-// Salva o carrinho no Local Storage
 function salvarCarrinho(carrinho) {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    try {
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    } catch (e) {
+        console.error("Erro ao salvar carrinho:", e);
+    }
 }
 
-/**
- * Adiciona ou atualiza um item no carrinho (Local Storage).
- * @param {number} id - ID do produto.
- * @param {string} nome - Nome do produto.
- * @param {string} preco - Preço unitário do produto (string com ponto decimal).
- * @param {number} quantidade - Quantidade a ser adicionada.
- */
+function updateCartBadge() {
+    try {
+        let carrinho = carregarCarrinho();
+        const badge = document.getElementById("cart-count");
+        if (!badge) return;
+        let total = carrinho.reduce((soma, item) => soma + (parseInt(item.quantidade) || 0), 0);
+        badge.textContent = total;
+        badge.style.display = total > 0 ? "inline-block" : "none";
+    } catch (e) {
+        console.error("Erro updateCartBadge:", e);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateCartBadge();
+    console.log("updateCartBadge executado ao DOMContentLoaded");
+});
+
+// ====================================================================
+// FUNÇÕES DE MANIPULAÇÃO DO CARRINHO (ARRAY)
+// ====================================================================
 function adicionarItemAoCarrinhoLS(id, nome, preco, quantidade) {
+    id = Number(id);
+    quantidade = parseInt(quantidade) || 1;
+    preco = parseFloat(preco) || 0;
+
     let carrinho = carregarCarrinho();
-    // Apenas converte para float, já que o preço já vem no formato '0.00' do PHP
-    let precoFloat = parseFloat(preco); 
-    
-    let itemExistente = carrinho.find(item => item.id === id);
+    let itemExistente = carrinho.find(item => Number(item.id) === id);
 
     if (itemExistente) {
-        itemExistente.quantidade += quantidade;
+        itemExistente.quantidade = (parseInt(itemExistente.quantidade) || 0) + quantidade;
     } else {
         carrinho.push({
             id: id,
             nome: nome,
-            preco: precoFloat,
+            preco: preco,
             quantidade: quantidade
         });
     }
 
     salvarCarrinho(carrinho);
+    updateCartBadge();
+    console.log(`adicionarItemAoCarrinhoLS -> id:${id} nome:${nome} qtd:${quantidade}`);
 }
 
-// Remove um item completamente do carrinho
 function removerDoCarrinho(id) {
+    id = Number(id);
     let carrinho = carregarCarrinho();
-    carrinho = carrinho.filter(item => item.id !== id);
+    carrinho = carrinho.filter(item => Number(item.id) !== id);
     salvarCarrinho(carrinho);
+    updateCartBadge();
+    console.log("removerDoCarrinho -> id:", id);
 }
 
-// Atualiza a quantidade de um item específico no carrinho
 function atualizarQuantidade(id, novaQtd) {
+    id = Number(id);
+    novaQtd = parseInt(novaQtd) || 0;
     let carrinho = carregarCarrinho();
-    let qtdNumerica = parseInt(novaQtd);
-
-    if (qtdNumerica <= 0) {
-        removerDoCarrinho(id); // Remove se a quantidade for 0 ou menos
+    let item = carrinho.find(p => Number(p.id) === id);
+    if (!item) return;
+    if (novaQtd <= 0) {
+        removerDoCarrinho(id);
     } else {
-        carrinho = carrinho.map(item => {
-            if (item.id === id) {
-                item.quantidade = qtdNumerica;
-            }
-            return item;
-        });
+        item.quantidade = novaQtd;
         salvarCarrinho(carrinho);
+        updateCartBadge();
     }
+    console.log("atualizarQuantidade -> id:", id, "qtd:", novaQtd);
 }
 
+// ====================================================================
+// FUNÇÕES LIGADAS AO HTML
+// ====================================================================
+
+// incrementa/decrementa o input de quantidade no card (não toca no storage)
 function alterarQtdProduto(produtoId, valor) {
-    const inputQtd = document.getElementById('qtd-' + produtoId);
-    let qtdAtual = parseInt(inputQtd.value);
-
-    qtdAtual += valor;
-    if (qtdAtual < 1) {
-        qtdAtual = 1; 
+    const input = document.getElementById('qtd-' + produtoId);
+    if (!input) {
+        console.warn("alterarQtdProduto: input não encontrado", produtoId);
+        return;
     }
-
-    inputQtd.value = qtdAtual;
+    let qtdAtual = parseInt(input.value) || 1;
+    qtdAtual += valor;
+    if (qtdAtual < 1) qtdAtual = 1;
+    input.value = qtdAtual;
+    // não atualiza storage aqui — atualização no storage ocorre quando clicar "Adicionar"
 }
 
+// garante que valor do input seja mínimo 1
 function atualizarQtdInput(produtoId, inputElement) {
     let qtd = parseInt(inputElement.value);
     if (isNaN(qtd) || qtd < 1) {
@@ -85,42 +126,43 @@ function atualizarQtdInput(produtoId, inputElement) {
     }
 }
 
-function adicionarEIrParaCarrinho(produtoId) {
-    const inputQtd = document.getElementById('qtd-' + produtoId);
-    const quantidade = parseInt(inputQtd.value);
+// adiciona ao carrinho sem redirecionar (usado nos cards)
+function adicionarAoCarrinho(produtoId) {
+    const input = document.getElementById('qtd-' + produtoId);
+    const quantidade = input ? parseInt(input.value) || 1 : 1;
 
-    if (quantidade <= 0) {
-        alert('Por favor, selecione uma quantidade válida para adicionar ao carrinho.');
+    // pega dados do botão
+    const btn = document.querySelector(`[data-produto-id="${produtoId}"]`);
+    if (!btn) {
+        console.error("adicionarAoCarrinho: botão não encontrado para id", produtoId);
         return;
     }
-    
-    const btnAdicionar = document.querySelector(`[data-produto-id="${produtoId}"]`);
-    const nome = btnAdicionar.getAttribute('data-nome');
-    const preco = btnAdicionar.getAttribute('data-preco'); 
+    const nome = btn.dataset.nome;
+    const preco = btn.dataset.preco;
 
     adicionarItemAoCarrinhoLS(produtoId, nome, preco, quantidade);
-    
-    window.location.href = 'carrinho.php';
+
+    // feedback breve (substitua por toast se quiser)
+   console.log(`${quantidade}x ${nome} adicionado ao carrinho.`);
 }
 
+// incrementa/decrementa dentro do carrinho (carrinho.php)
 function alterarQtdCarrinho(id, delta) {
     let carrinho = carregarCarrinho();
-    let item = carrinho.find(p => p.id === id);
-
+    let item = carrinho.find(p => Number(p.id) === Number(id));
     if (!item) return;
-
-    item.quantidade += delta;
-
+    item.quantidade = (parseInt(item.quantidade) || 0) + delta;
     if (item.quantidade <= 0) {
         removerDoCarrinho(id);
     } else {
-        atualizarQuantidade(id, item.quantidade);
+        salvarCarrinho(carrinho);
+        updateCartBadge();
     }
-    
-    carregarTabelaCarrinho(); 
+    if (typeof carregarTabelaCarrinho === "function") carregarTabelaCarrinho();
 }
 
+// remove item e recarrega a tabela
 function removerCarrinho(id) {
     removerDoCarrinho(id);
-    carregarTabelaCarrinho(); 
+    if (typeof carregarTabelaCarrinho === "function") carregarTabelaCarrinho();
 }
