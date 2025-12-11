@@ -92,6 +92,7 @@ if (!isset($_SESSION)) {
                 <?php else: ?>
 
                     <li><a class="dropdown-item" href="/PipaSalgados/clientes/login.php">Entrar</a></li>
+                    <li><a class="dropdown-item" href="/PipaSalgados/admin/login.php">Entrar como ADM</a></li>
                     <li><a class="dropdown-item" href="/PipaSalgados/clientes/cadastro.php">Criar Conta</a></li>
 
                 <?php endif; ?>
