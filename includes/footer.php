@@ -10,9 +10,13 @@
 
             <div class="col-md-6 col-lg-4">
                 <h6>Endereço</h6>
-                <iframe
-                    src="https://www.google.com/maps/embed?... (seu link original)"
-                    width="300" height="250" style="border:0;" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d934.0476312910728!2d-49.326162224266554!3d-20.539384039894895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bcfdb2ac6afd79%3A0xcf18bd90a4d22782!2sR.%20Vergilio%20Ferreira%20Campos%20Filho%2C%201323%20-%20Nova%20Granada%2C%20SP%2C%2015440-000!5e0!3m2!1spt-BR!2sbr!4v1765434548466!5m2!1spt-BR!2sbr" 
+                    width="300" 
+                    height="300" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
             <div class="col-md-6 col-lg-4" id="contato">

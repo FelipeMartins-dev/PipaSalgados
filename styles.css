@@ -49,8 +49,6 @@ body {
     color: #FFF;
 }
 
-
-
 .btn-pedido {
     border-color: rgb(255, 0, 0);
     color: black;
@@ -154,7 +152,6 @@ body {
 .carousel-indicators [data-bs-target] {
     width: 14px;
     height: 14px;
-    border-radius: 50%;
     background-color: #ffffff80;
     transition: 0.3s ease;
 }

@@ -25,38 +25,38 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
             <button type="button" data-bs-target="#categoryCarousel" data-bs-slide-to="2"></button>
         </div>
 
-        <div class="carousel-inner" style="max-height: 550px; border-radius: 15px; overflow: hidden;">
+        <div class="carousel-inner" style="max-height: 550px; overflow: hidden;">
 
             <!-- Slide 1 -->
             <div class="carousel-item active">
-                <img src="style/coxinhac.png" class="d-block w-100 hero-img" alt="Salgados Deliciosos">
+                <img src="style/pipa_salgados_fin.png" class="d-block w-100 hero-img" alt="Salgados Deliciosos">
 
                 <div class="carousel-caption custom-caption">
-                    <h1 class="fw-bold display-4">Nossos Salgados</h1>
-                    <p class="lead">Opções congeladas e prontas para fritar. Perfeitas para sua festa!</p>
-                    <a href="salgados.php" class="btn hero-btn">Ver Salgados</a>
+                    <h1 class="fw-bold display-4">Área de atuação</h1>
+                    <p class="lead">Entregamos em São José do Rio Preto e Nova Granada!</p>
+                    <a href="https://maps.app.goo.gl/TaDAEdVnVDQfxH2QA" class="btn hero-btn">Localização da Fabrica</a>
                 </div>
             </div>
 
             <!-- Slide 2 -->
             <div class="carousel-item">
-                <img src="style/paoc.png" class="d-block w-100 hero-img" alt="Pães Frescos">
+                <img src="style/pipa_salgados_fin.png" class="d-block w-100 hero-img" alt="Produtos Premium">
 
                 <div class="carousel-caption custom-caption">
-                    <h1 class="fw-bold display-4">Pães</h1>
-                    <p class="lead">Pães congelados, do nosso forno para o seu.</p>
-                    <a href="paes.php" class="btn hero-btn">Ver Pães</a>
+                    <h1 class="fw-bold display-4">Salgados</h1>
+                    <p class="lead">Sabores exclusivos e ingredientes selecionados, para trazer a verdadeiro sabor para sua festa!</p>
+                    <a href="salgados.php" class="btn hero-btn">Conheça os nosso salgados</a>
                 </div>
             </div>
 
             <!-- Slide 3 -->
             <div class="carousel-item">
-                <img src="style/croquetec.png" class="d-block w-100 hero-img" alt="Produtos Premium">
+                <img src="style/pipa_salgados_fin.png" class="d-block w-100 hero-img" alt="Pães Frescos">
 
                 <div class="carousel-caption custom-caption">
-                    <h1 class="fw-bold display-4">Linha Premium</h1>
-                    <p class="lead">Sabores exclusivos e ingredientes selecionados.</p>
-                    <a href="salgados.php#linha-premium" class="btn hero-btn">Conheça o Premium</a>
+                    <h1 class="fw-bold display-4">Pães</h1>
+                    <p class="lead">Pães congelados, do nosso forno para o seu.</p>
+                    <a href="paes.php" class="btn hero-btn">Ver Pães</a>
                 </div>
             </div>
         </div>
@@ -65,35 +65,55 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
 
 <section id="sobre" class="py-5">
     <div class="container">
+        <div class="row" style="text-align: center;">
+            <h2>SOBRE</h2>
+        </div>
+        <br><br>
         
         <div class="row align-items-center gy-4">
-            <div class="col-md-4 text-center">
-                <img src="style/padaria.png" class="img-fluid rounded-5 shadow" alt="Padaria">
-            </div>
 
-            <div class="col-md-4">
-                <h2>Nossa Missão: Sabor Sem Limites!</h2>
-                <p>Na Pipa Salgados, transformamos a tradição familiar em delícias práticas para o seu dia a dia e seus eventos. Somos a fábrica que entende de festa: da bolinha de queijo crocante ao pão fresquinho, garantimos qualidade e paixão em cada mordida. </p>
-                <p class="fw-bold">Nosso foco é dar mais sabor ao seu tempo, com a qualidade que só a fabricação própria oferece!</p>
-            </div>
-            
-            <div class="col-md-4">
-                <h2> O que você procura hoje?</h2>
-                <p><strong>Salgados Congelados & Fritos:</strong></p>
-                <p class="small text-muted">A solução perfeita! Escolha entre nossa linha de salgados fritos na hora ou as opções congeladas, prontas para ir direto para sua fritadeira ou forno.</p>
-                
-                <p class="mt-4"><strong>Pães Congelados:</strong></p>
-                <p class="small text-muted">Aquele cheirinho de pão que acabou de sair do forno, sem complicação. Nossos pães são pré-prontos e garantem a mesa mais fresca e saborosa.</p>
-            </div>
-            
+        
+        <div class="col-md-3 text-center">
+            <img src="style/risoli_pipa.png" class="img-fluid rounded-5" alt="Padaria">
         </div>
+
+        <div class="col-md-3">
+            <h2>Nossa Missão: Sabor Sem Limites!</h2>
+            <p>
+                Na Pipa Salgados, transformamos a tradição familiar em delícias práticas para o seu dia a dia e seus eventos.
+                Somos a fábrica que entende de festa: da bolinha de queijo crocante ao pão fresquinho, garantimos qualidade
+                e paixão em cada mordida.
+            </p>
+            <p class="fw-bold">
+                Nosso foco é dar mais sabor ao seu tempo, com a qualidade que só a fabricação própria oferece!
+            </p>
+        </div>
+
+        <div class="col-md-3">
+            <h2>O que você procura hoje?</h2>
+
+            <p><strong>Salgados Congelados & Fritos:</strong></p>
+            <p class="small text-muted">
+                Escolha entre nossa linha de salgados fritos na hora ou opções congeladas prontas para fritadeira ou forno.
+            </p>
+
+            <p><strong>Pães Congelados:</strong></p>
+            <p class="small text-muted">
+                Aquele cheirinho de pão recém-assado sem complicação. Pré-prontos e sempre frescos.
+            </p>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <img src="style/bolinha_de_queijo_pipa.png" class="img-fluid rounded-5" alt="Padaria">
+        </div>
+
     </div>
 </section>
 
 <main class="py-5">
     <div class="container">
 
-        <h2 class="text-center my-4">Destaques da Casa</h2>
+        <h2 class="text-center my-4">DESTAQUES DA CASA</h2>
 
         <?php if (count($produtos_destaque) > 0): ?>
             <div class="row g-4 justify-content-center">
@@ -156,14 +176,14 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
         <section id="cardapio" class="py-5 bg-pattern">
         <div class="container py-lg-5">
             <div class="text-center mb-5">
-                <h5 class="text-danger fw-bold text-uppercase">Nosso Cardápio</h5>
-                <h2 class="fw-bold">Escolha seus Favoritos</h2>
+                <h2 class="text fw-bold text-uppercase">Nosso Cardápio</h2>
+                <h5 class="fw-bold">Escolha seus Favoritos</h5>
             </div>
 
             <div class="alert alert-warning text-center shadow-sm border-warning mb-5 rounded-4 mx-auto"
                 style="max-width: 700px;">
                 <h4 class="mb-0 fw-bold text-dark"><i class="bi bi-megaphone-fill"></i> Salgados Fritos: <span
-                        class="text-danger">R$ 85,00</span> o cento</h4>
+                        class="text-success">R$ 85,00</span> o cento</h4>
                 <small class="text-muted">(Exceto bolinho de bacalhau)</small>
             </div>
             
@@ -185,27 +205,27 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Bolinha de Queijo</strong> <small class="text-muted d-block">25
                                                     unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Bolinho de Milho</strong> <small class="text-muted d-block">25
                                                     unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Bolinho de Palmito</strong> <small
                                                     class="text-muted d-block">25 unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Coxinha de Carne</strong> <small class="text-muted d-block">25
                                                     unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Coxinha de Frango</strong> <small class="text-muted d-block">25
                                                     unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -225,17 +245,17 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Croquete</strong> <small class="text-muted d-block">25
                                                     unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 15,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 15,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Kibe Tradicional</strong> <small class="text-muted d-block">25
                                                     unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 15,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 15,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Kibe com Coalhada</strong> <small class="text-muted d-block">25
                                                     unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 16,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 16,00</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -255,17 +275,17 @@ $produtos_destaque = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Trouxinha de Carne</strong> <small
                                                     class="text-muted d-block">25 unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Trouxinha de Calabresa com Cheddar</strong> <small
                                                     class="text-muted d-block">25 unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <div><strong>Trouxinha de Presunto e Mussarela</strong> <small
                                                     class="text-muted d-block">25 unidades</small></div>
-                                            <span class="badge bg-danger rounded-pill fs-6">R$ 14,00</span>
+                                            <span class="badge bg-dark rounded-pill fs-6">R$ 14,00</span>
                                         </li>
                                     </ul>
                                 </div>

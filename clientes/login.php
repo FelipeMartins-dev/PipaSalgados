@@ -8,7 +8,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $email = trim($_POST["email"]);
     $senha = trim($_POST["senha"]);
+    $tipo_form = strtolower(trim($_POST["tipo"])); // normaliza
 
+    // Busca o usuário
     $sql = "SELECT id, nome, senha, tipo FROM usuarios WHERE email = ? LIMIT 1";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
@@ -16,25 +18,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $resultado = $stmt->get_result();
 
     if ($resultado->num_rows === 1) {
+
         $user = $resultado->fetch_assoc();
 
-        if ($user["tipo"] !== "cliente") {
-            $erro = "Este login é exclusivo para clientes.";
-        }
-        elseif (password_verify($senha, $user["senha"])) {
-            $_SESSION["cliente_id"] = $user["id"];
-            $_SESSION["cliente_nome"] = $user["nome"];
+        // Normaliza o tipo vindo do banco
+        $tipo_banco = strtolower(trim($user["tipo"]));
 
-            header("Location: area_cliente.php");
-            exit;
-        } else {
+        // Verificação do tipo de usuário
+        if ($tipo_banco !== $tipo_form) {
+            $erro = "Tipo de usuário incorreto.";
+
+        // Verificação da senha
+        } elseif (!password_verify($senha, $user["senha"])) {
             $erro = "Senha incorreta.";
+
+        } else {
+
+            // Login OK — cria a sessão
+            $_SESSION["usuario_id"]   = $user["id"];
+            $_SESSION["usuario_nome"] = $user["nome"];
+            $_SESSION["usuario_tipo"] = $tipo_banco;
+
+            // Redirecionamento por tipo
+            if ($tipo_banco === "cliente") {
+                header("Location: clientes/area_cliente.php");
+                exit;
+            }
+
+            if ($tipo_banco === "admin") {
+                header("Location: area_admin.php");
+                exit;
+            }
         }
+
     } else {
         $erro = "E-mail não encontrado.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -46,9 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        body {
-            background: #f5f6fa;
-        }
+        body { background: #f5f6fa; }
         .login-card {
             max-width: 420px;
             margin: 70px auto;
@@ -84,6 +104,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <label class="mb-1">Senha</label>
         <input type="password" name="senha" class="form-control mb-4" required>
+
+        <label class="mb-1">Tipo de usuário</label>
+        <select name="tipo" class="form-control mb-4" required>
+            <option value="cliente">Cliente</option>
+            <option value="admin">Administrador</option>
+        </select>
 
         <button type="submit" class="btn btn-primary w-100 py-2">
             Entrar
